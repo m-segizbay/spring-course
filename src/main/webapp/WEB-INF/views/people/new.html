@@ -11,7 +11,16 @@
     <form th:method="POST" th:action="@{/people}" th:object="${person}">
         <label for="name">Enter name:</label>
         <input type="text" th:field="*{name}" placeholder="Name" id="name">
-        <br>
+        <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</div>
+        <br/>
+        <label for="name">Enter age:</label>
+        <input type="text" th:field="*{age}" placeholder="Age" id="age">
+        <div style="color:red" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Age error</div>
+        <br/>
+        <label for="name">Enter email:</label>
+        <input type="text" th:field="*{email}" placeholder="Email" id="email">
+        <div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email error</div>
+        <br/>
         <input type="submit" value="Create!">
     </form>
 </body>
