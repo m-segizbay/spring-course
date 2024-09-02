@@ -10,7 +10,7 @@
   <properties>
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.targer>11</maven.compiler.targer>
-    <spring.version>5.3.27</spring.version>
+    <spring.version>5.2.1.RELEASE</spring.version>
   </properties>
   <dependencies>
     <dependency>
