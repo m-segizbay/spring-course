@@ -2,6 +2,7 @@ package kz.segizbay.springcourse.controllers;
 
 import kz.segizbay.springcourse.dao.PersonDAO;
 import kz.segizbay.springcourse.models.Person;
+import kz.segizbay.springcourse.util.PersonValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,10 +15,12 @@ import javax.validation.Valid;
 @RequestMapping("/people")
 public class PeopleController {
     private PersonDAO personDAO;
+    private PersonValidator personValidator;
 
     @Autowired
-    public PeopleController(PersonDAO personDAO) {
+    public PeopleController(PersonDAO personDAO, PersonValidator personValidator) {
         this.personDAO = personDAO;
+        this.personValidator = personValidator;
     }
 
     @GetMapping
@@ -39,6 +42,7 @@ public class PeopleController {
 
     @PostMapping
     public String create(@ModelAttribute @Valid Person person, BindingResult bindingResult){
+        personValidator.validate(person, bindingResult);
         if (bindingResult.hasErrors()){
             return "people/new";
         }
